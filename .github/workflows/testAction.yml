@@ -1,0 +1,15 @@
+name: testAction
+
+on:
+    pull_request:
+        paths:
+            - 'src/**'
+            
+jobs:
+
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+        - name: this is a test
+          run: echo "changing in src"
