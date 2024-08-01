@@ -11,5 +11,5 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-        - name: this is a test
-          run: echo "changing in src"
+        - name: ACTION TEST
+          run: echo "changed in src/**"
