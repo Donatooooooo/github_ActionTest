@@ -16,8 +16,13 @@ jobs:
 
             - name: Generate Changelog File
               run: |
-                MERGE_COMMIT=$(git log --merges --format="%H" -1)
-                git log --pretty=format:"%h - %s (%an)" $MERGE_COMMIT^..$MERGE_COMMIT > changelog.txt
+                BASE_BRANCH=$(echo ${{ github.event.pull_request.base.ref }})
+                HEAD_BRANCH=$(echo ${{ github.event.pull_request.head.ref }})
+                git fetch origin $BASE_BRANCH
+                git fetch origin $HEAD_BRANCH
+                BASE_COMMIT=$(git rev-parse origin/$BASE_BRANCH)
+                HEAD_COMMIT=$(git rev-parse origin/$HEAD_BRANCH)
+                git log --pretty=format:"%h - %s (%an)" $BASE_COMMIT..$HEAD_COMMIT > changelog.txt
                 cat changelog.txt
 
             - name: Commit Changelog File
@@ -25,7 +30,7 @@ jobs:
                 git config --local user.email "action@github.com"
                 git config --local user.name "GitHub Action"
                 git add changelog.txt
-                git commit -m "Add changelog for pull request"
+                git commit -m "Added changelog"
                 git push origin HEAD:main
         env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
