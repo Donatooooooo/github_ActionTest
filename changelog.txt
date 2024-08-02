@@ -1,77 +1,19 @@
-diff --git a/.github/workflows/generate_changelog.yml b/.github/workflows/generate_changelog.yml
-index 22201ad..5e944e7 100644
---- a/.github/workflows/generate_changelog.yml
-+++ b/.github/workflows/generate_changelog.yml
-@@ -1,15 +1,10 @@
- name: Generate Changelog
- 
- on:
--    push:
--        branches:
--            - main
--        paths:
--            - 'src/**'
-     pull_request:
-         paths:
-             - 'src/**'
--            
-+
- jobs:
- 
-     generate-changelog:
-@@ -21,18 +16,24 @@ jobs:
- 
-             - name: Generate Changelog File
-               run: |
--                	MERGE_COMMIT=$(git log --merges --format="%H" -1)
--                    git log --pretty=format:"%h - %s (%an)" $MERGE_COMMIT^..$MERGE_COMMIT > changelog.txt
--                    cat changelog.txt
-+                BASE_BRANCH=$(echo ${{ github.event.pull_request.base.ref }})
-+                HEAD_BRANCH=$(echo ${{ github.event.pull_request.head.ref }})
-+                git fetch origin $BASE_BRANCH
-+                git fetch origin $HEAD_BRANCH
-+                BASE_COMMIT=$(git rev-parse origin/$BASE_BRANCH)
-+                HEAD_COMMIT=$(git rev-parse origin/$HEAD_BRANCH)
-+                git diff $BASE_COMMIT $HEAD_COMMIT > changelog.txt
-+                cat changelog.txt
- 
-             - name: Commit Changelog File
-               run: |
-                 git config --local user.email "action@github.com"
-                 git config --local user.name "GitHub Action"
-                 git add changelog.txt
--                git commit -m "Add changelog for pull request"
--                git push origin HEAD:main
--        env:
-+                git commit -m "Added changelog"
-+                git pull --rebase origin ${{ github.head_ref }}
-+                git push origin HEAD:${{ github.head_ref }}
-+              env:
-                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     
- 
-diff --git a/changelog.txt b/changelog.txt
-new file mode 100644
-index 0000000..90bc159
---- /dev/null
-+++ b/changelog.txt
-@@ -0,0 +1,10 @@
-+2b1c265 - test6: added command (donatooooooo)
-+8d490d0 - removed last test (donatooooooo)
-+2c0a0c5 - test5 (donatooooooo)
-+197c441 - added git pull command (donatooooooo)
-+68e7664 - changed git push command (donatooooooo)
-+8a4c456 - added env (donatooooooo)
-+9230d03 - test4: changed 2nd step (donatooooooo)
-+ccf9dce - test3: changed code (donatooooooo)
-+05d0ee1 - test2 (donatooooooo)
-+44b3536 - test1 (donatooooooo)
-\ No newline at end of file
 diff --git a/src/eo_strings.cpp b/src/eo_strings.cpp
-index 50d3be8..5f595ea 100644
+index 50d3be8..0453405 100644
 --- a/src/eo_strings.cpp
 +++ b/src/eo_strings.cpp
-@@ -107,9 +107,9 @@ int main() {
+@@ -98,19 +98,19 @@ int main() {
+ 	cout << "Lista delle stringhe pari: ";
+ 	categorizer.show(categorizer.getEvenList());
+ 
+-	cout << "Lista delle stringhe dispari: ";
+-	categorizer.show(categorizer.getOddList());
+-
+-	 categorizer.del("banana");
+-	 categorizer.del("kiwi");
++	categorizer.del("banana");
++	categorizer.del("kiwi");
+ 
  	cout << "Lista pari modificata: ";
  	categorizer.show(categorizer.getEvenList());
  
@@ -81,5 +23,9 @@ index 50d3be8..5f595ea 100644
 -	cout << "Lista pari senza orange: ";
 +	cout << "Lista pari senza strawberry: ";
  	categorizer.show(categorizer.getEvenList());
++
++	cout << "Lista delle stringhe dispari: ";
++	categorizer.show(categorizer.getOddList());
  	
  	system("pause");
+ 	return 0;
