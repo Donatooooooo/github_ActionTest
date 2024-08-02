@@ -9,7 +9,7 @@ on:
     pull_request:
         paths:
             - 'src/**'
-            
+
 jobs:
 
     generate-changelog:
@@ -21,9 +21,9 @@ jobs:
 
             - name: Generate Changelog File
               run: |
-                	MERGE_COMMIT=$(git log --merges --format="%H" -1)
-                    git log --pretty=format:"%h - %s (%an)" $MERGE_COMMIT^..$MERGE_COMMIT > changelog.txt
-                    cat changelog.txt
+                MERGE_COMMIT=$(git log --merges --format="%H" -1)
+                git log --pretty=format:"%h - %s (%an)" $MERGE_COMMIT^..$MERGE_COMMIT > changelog.txt
+                cat changelog.txt
 
             - name: Commit Changelog File
               run: |
