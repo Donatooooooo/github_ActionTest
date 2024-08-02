@@ -98,19 +98,19 @@ int main() {
 	cout << "Lista delle stringhe pari: ";
 	categorizer.show(categorizer.getEvenList());
 
-	cout << "Lista delle stringhe dispari: ";
-	categorizer.show(categorizer.getOddList());
-
-	 categorizer.del("banana");
-	 categorizer.del("kiwi");
+	categorizer.del("banana");
+	categorizer.del("kiwi");
 
 	cout << "Lista pari modificata: ";
 	categorizer.show(categorizer.getEvenList());
 
-	categorizer.del('o', categorizer.getEvenList());
+	categorizer.del('s', categorizer.getEvenList());
 
-	cout << "Lista pari senza orange: ";
+	cout << "Lista pari senza strawberry: ";
 	categorizer.show(categorizer.getEvenList());
+
+	cout << "Lista delle stringhe dispari: ";
+	categorizer.show(categorizer.getOddList());
 	
 	system("pause");
 	return 0;
