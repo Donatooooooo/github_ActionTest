@@ -22,7 +22,7 @@ jobs:
                 git fetch origin $HEAD_BRANCH
                 BASE_COMMIT=$(git rev-parse origin/$BASE_BRANCH)
                 HEAD_COMMIT=$(git rev-parse origin/$HEAD_BRANCH)
-                git log --pretty=format:"%h - %s (%an)" $BASE_COMMIT..$HEAD_COMMIT > changelog.txt
+                git diff $BASE_COMMIT $HEAD_COMMIT > changelog.txt
                 cat changelog.txt
 
             - name: Commit Changelog File
