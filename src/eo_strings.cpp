@@ -107,9 +107,9 @@ int main() {
 	cout << "Lista pari modificata: ";
 	categorizer.show(categorizer.getEvenList());
 
-	categorizer.del('o', categorizer.getEvenList());
+	categorizer.del('s', categorizer.getEvenList());
 
-	cout << "Lista pari senza orange: ";
+	cout << "Lista pari senza strawberry: ";
 	categorizer.show(categorizer.getEvenList());
 	
 	system("pause");
