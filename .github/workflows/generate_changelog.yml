@@ -32,7 +32,7 @@ jobs:
                 git add changelog.txt
                 git commit -m "Added changelog"
                 git push origin HEAD:main
-        env:
+              env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 
