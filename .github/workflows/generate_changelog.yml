@@ -31,7 +31,7 @@ jobs:
                 git config --local user.name "GitHub Action"
                 git add changelog.txt
                 git commit -m "Added changelog"
-                git push origin HEAD:main
+                git push origin HEAD:${{ github.head_ref }}
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
