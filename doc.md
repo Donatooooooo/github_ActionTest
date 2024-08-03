@@ -10,9 +10,9 @@ Le GitHub Actions sfruttano i workflow per definire le automazioni, ossia un fil
 
 È stata crata una repository per poter comprendere e sfruttare le GitHub Actions. L'obbiettivo principale è stato quello di creare un'automazione che mi permettese di ottenere un file di changelog ad ogni aggiornamneto delle pull request. La directory _src/_ contiene del codice di prova utile per poter eseguire i diversi test. 
 
-Inizialmente è stato creato il file 'test_action.yml'il cui funzionamento è molto semplice: stampa un messaggio quando ci sono cambiamenti in un qualsiasi file all'interno di _src/_. Questo mi ha permesso di comprendere i principi fondamentali delle GitHub Actions.
+Inizialmente è stato creato il file 'test_action.yml' il cui funzionamento è molto semplice: stampa un messaggio quando ci sono cambiamenti in un qualsiasi file all'interno di _src/_. Questo mi ha permesso di comprendere i principi fondamentali delle GitHub Actions.
 
-Solo in seguito, ho sviluppato e tastato 'generate_changelog.yml'. Questo file automatizza la generazione di un file di changelog che riassume le modifiche apportate.
+Solo in seguito, ho sviluppato e tastato 'generate_changelog.yml'. Questo file automatizza la generazione di un file di changelog che riassume le modifiche apportate all'interno dei file di codice in _src/_.
 
 ### Fonti consultate
 
